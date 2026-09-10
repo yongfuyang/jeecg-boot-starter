@@ -5,6 +5,7 @@ import org.jeecg.ai.prop.AiChatProperties;
 import org.jeecg.chatgpt.service.AiChatService;
 import org.jeecg.chatgpt.service.impl.ChatGptService;
 import org.jeecg.chatgpt.service.impl.DefaultAiChatService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -19,6 +20,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(AiChatProperties.class)
+// LLMHandler的方法签名引用了dashscope的类，而langchain4j-community-dashscope在本starter中为provided不向下传递；
+// SDK缺失时若仍注册defaultLlmHandler会在内省LLMHandler时抛NoClassDefFoundError导致启动失败，故此处在SDK缺失时跳过整个装配
+@ConditionalOnClass(name = "com.alibaba.dashscope.aigc.multimodalconversation.MultiModalConversationResult")
 public class AiChatAutoConfiguration {
 
 
