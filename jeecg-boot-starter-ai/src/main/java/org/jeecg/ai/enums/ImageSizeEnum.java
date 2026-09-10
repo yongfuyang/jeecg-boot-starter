@@ -1,6 +1,6 @@
 package org.jeecg.ai.enums;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
 * @Description: 图片大小比例枚举

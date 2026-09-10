@@ -7,7 +7,7 @@ import dev.langchain4j.model.googleai.GoogleAiGeminiImageModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiStreamingChatModel;
 import dev.langchain4j.model.image.ImageModel;
 import dev.langchain4j.model.openai.*;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.jeecg.ai.enums.ImageSizeEnum;
 
 import java.time.Duration;

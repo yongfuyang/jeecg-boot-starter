@@ -20,10 +20,11 @@
     </properties>
 
     <dependencies>
-        <!-- commons-lang -->
+        <!-- commons-lang3 -->
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.20.0</version>
         </dependency>
 
         <dependency>
