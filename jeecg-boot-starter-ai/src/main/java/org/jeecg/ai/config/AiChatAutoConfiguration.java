@@ -3,8 +3,10 @@ package org.jeecg.ai.config;
 import org.jeecg.ai.handler.LLMHandler;
 import org.jeecg.ai.prop.AiChatProperties;
 import org.jeecg.chatgpt.service.AiChatService;
+import org.jeecg.chatgpt.service.impl.AiChatClientImpl;
 import org.jeecg.chatgpt.service.impl.ChatGptService;
 import org.jeecg.chatgpt.service.impl.DefaultAiChatService;
+import org.jeecg.common.ai.IAiChatClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -77,6 +79,19 @@ public class AiChatAutoConfiguration {
     @ConditionalOnMissingBean(AiChatService.class)
     public AiChatService defaultAiChatService() {
         return new DefaultAiChatService();
+    }
+
+    /**
+     * AI聊天门面（业务模块软依赖AI能力的统一入口）
+     *
+     * @param aiChatService
+     * @return
+     * @author zhang
+     * @date 2026/9/10
+     */
+    @Bean
+    public IAiChatClient aiChatClient(AiChatService aiChatService) {
+        return new AiChatClientImpl(aiChatService);
     }
 
 }
